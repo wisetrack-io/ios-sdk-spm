@@ -29,7 +29,7 @@ let package = Package(
                 .target(name: "WiseTrackLib"),
                 .target(name: "Sentry")
             ],
-            path: "WiseTrackTargets"
+            path: "Sources/WiseTrackTargets"
         )
     ]
 )
