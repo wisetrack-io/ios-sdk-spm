@@ -9,27 +9,27 @@ let package = Package(
     products: [
         .library(
             name: "WiseTrackLib",
-            targets: ["WiseTrackLibWrapper"]
+            targets: ["WiseTrackTargets"]
         )
-    ],
-    dependencies: [
-        .package(url: "https://github.com/getsentry/sentry-cocoa.git", from: "8.50.2")
     ],
     targets: [
         .binaryTarget(
             name: "WiseTrackLib",
-            url: "https://github.com/wisetrack-io/ios-sdk-spm/releases/download/1.1.1/WiseTrackLib.xcframework.zip",
-            checksum: "513709f78d9d14c0109410b2a8d0c1e13dca625419a13a1fca873814d51dec2c"
+            url: "https://github.com/wisetrack-io/ios-sdk/releases/download/1.0.1/WiseTrackLib.xcframework.zip",
+            checksum: "d99765e56629a288b255b16c3b17344084d983b33800c732dbaaa0a828a25284"
+        ),
+        .binaryTarget(
+            name: "Sentry",
+            url: "https://github.com/getsentry/sentry-cocoa/releases/download/8.50.2/Sentry.xcframework.zip",
+            checksum: "b96b5dfa1179da2f802c8a8e25639a7711e0e1296b4b09829c513980c74017ba"
         ),
         .target(
-            name: "WiseTrackLibWrapper",
+            name: "WiseTrackTargets",
             dependencies: [
-                "WiseTrackLib",
-                .product(name: "Sentry", package: "sentry-cocoa")
+                .target(name: "WiseTrackLib"),
+                .target(name: "Sentry")
             ],
-            linkerSettings: [
-                .linkedFramework("Sentry")
-            ]
+            path: "WiseTrackTargets"
         )
     ]
 )
